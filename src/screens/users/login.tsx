@@ -3,12 +3,15 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, Image, Button } from 'react-native';
 
 export const TelaLogin = () => {
-  const [telefone, setTelefone] = useState('');
+  const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
 
   const handleLogin = () => {
-    if (telefone && senha) {
-      Alert.alert('Login realizado com sucesso!', `Número: ${telefone}`);
+    // Verifica se o email e a senha não estão vazios
+    if (email && senha) {
+      Alert.alert('Login realizado com sucesso!', `Email: ${email}`);
+      // Redireciona para a tela de lista de presença
+      router.navigate('/presenca');
     } else {
       Alert.alert('Erro', 'Por favor, preencha todos os campos.');
     }
@@ -24,10 +27,10 @@ export const TelaLogin = () => {
       />
       <TextInput
         style={styles.input}
-        placeholder="Número de Telefone"
-        value={telefone}
-        onChangeText={setTelefone}
-        keyboardType="phone-pad"
+        placeholder="Email"
+        value={email}
+        onChangeText={setEmail}
+        keyboardType="email-address" // Especifica que o teclado deve ser para email
       />
       <TextInput
         style={styles.input}
@@ -61,7 +64,7 @@ const styles = StyleSheet.create({
     width: 250,
     height: 250,
     marginBottom: 50,
-    borderRadius: '100%',
+    borderRadius: 125,  // Ajuste para borda redonda
   },
   input: {
     height: 40,

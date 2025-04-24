@@ -4,11 +4,13 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, Image, Butt
 
 export const TelaCadastro = () => {
   const [nome, setNome] = useState('');
-  const [telefone, setTelefone] = useState('');
-  const [endereco, setEndereco] = useState('');
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
+  const [cadastroSucesso, setCadastroSucesso] = useState(false);  // Novo estado para exibir o aviso
 
   const handleCadastro = () => {
-    if (nome && telefone && endereco) {
+    if (nome && email && senha) {
+      setCadastroSucesso(true); // Atualiza o estado para exibir a mensagem de sucesso
       Alert.alert('Cadastro realizado com sucesso!', `Bem-vindo, ${nome}!`);
     } else {
       Alert.alert('Erro', 'Por favor, preencha todos os campos.');
@@ -17,7 +19,7 @@ export const TelaCadastro = () => {
 
   return (
     <View style={styles.container}>
-      <Button title='Home' onPress={ () => router.navigate('/(tabs)')}/>
+      <Button title='Home' onPress={() => router.navigate('/(tabs)')} />
       <Text style={styles.title}>Cadastro</Text>
       <Image
         source={require('../../assets/img/logo.png')}
@@ -31,20 +33,25 @@ export const TelaCadastro = () => {
       />
       <TextInput
         style={styles.input}
-        placeholder="Telefone"
-        value={telefone}
-        onChangeText={setTelefone}
-        keyboardType="phone-pad"
+        placeholder="Email"
+        value={email}
+        onChangeText={setEmail}
+        keyboardType="email-address"
       />
       <TextInput
         style={styles.input}
-        placeholder="Endereço"
-        value={endereco}
-        onChangeText={setEndereco}
+        placeholder="Senha"
+        value={senha}
+        onChangeText={setSenha}
+        secureTextEntry
       />
       <TouchableOpacity style={styles.button} onPress={handleCadastro}>
         <Text style={styles.buttonText}>Cadastrar</Text>
       </TouchableOpacity>
+
+      {cadastroSucesso && (
+        <Text style={styles.sucessoTexto}>Cadastro realizado com sucesso!</Text>
+      )}
     </View>
   );
 };
@@ -67,7 +74,7 @@ const styles = StyleSheet.create({
     width: 250,
     height: 250,
     marginBottom: 50,
-    borderRadius: '100%',
+    borderRadius: 125,  // Ajuste para borda redonda
   },
   input: {
     height: 40,
@@ -89,6 +96,12 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 18,
     fontWeight: 'bold',
+  },
+  sucessoTexto: {
+    marginTop: 20,
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: 'green',
   },
 });
 
