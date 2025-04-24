@@ -7,7 +7,7 @@ export const TelaRegistroPresenca = () => {
   const registros = [
     { id: '1', nome: 'Raphael Guerra', data: '27/01/2025', status: 'Presente' },
     { id: '2', nome: 'Barbara Nayumi', data: '15/02/2025', status: 'Presente' },
-    { id: '3', nome: 'Leonardo Braga', data: '23/04/2025', status: 'Ausente' },
+    { id: '3', nome: 'Leonardo Braga', data: '23/0/2025', status: 'Ausente' },
   ];
 
   return (
